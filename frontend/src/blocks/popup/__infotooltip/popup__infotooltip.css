@@ -1,0 +1,10 @@
+.popup__infotooltip {
+    width: 430px;
+    height: 330px;
+    left: 425px;
+    top: 195px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    text-align: center;
+}

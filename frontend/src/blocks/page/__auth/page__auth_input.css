@@ -1,0 +1,33 @@
+.page__auth_input {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    height: 50%;
+    text-align: center;
+    color: white;
+    padding-left: 33%;
+    padding-right: 33%;
+}
+
+.page__auth_input input {
+    width: 358px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #CCCCCC;
+    color: #CCCCCC;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.page__auth_input::placeholder {
+    color: #CCCCCC;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}

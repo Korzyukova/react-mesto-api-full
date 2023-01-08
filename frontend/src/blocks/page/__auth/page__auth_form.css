@@ -1,0 +1,9 @@
+.page__auth_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 66%;
+    width: 66%;
+    align-items: center;
+    margin: 0;
+}

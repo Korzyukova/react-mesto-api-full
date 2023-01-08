@@ -1,0 +1,14 @@
+.trash {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.trash:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.trash.hidden
+{
+  display:none;
+}

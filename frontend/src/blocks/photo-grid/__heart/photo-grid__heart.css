@@ -1,0 +1,15 @@
+.photo-grid__heart {
+  width: 22px;
+  height: 19px;
+  background: url(../../../images/Heart.png) center;
+  background-repeat: no-repeat;
+  border: none;
+  align-self: center;
+  margin: 0;
+  margin-top: 3px;
+  /* margin-right: 20px; */
+  cursor: pointer;
+}
+.photo-grid__heart:hover {
+  background: url(../../../images/Union.png) center;
+}

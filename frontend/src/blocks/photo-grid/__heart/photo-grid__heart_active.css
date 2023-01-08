@@ -1,0 +1,17 @@
+.photo-grid__heart_active {
+  width: 22px;
+  height: 19px;
+  background: url(../../../images/Union.png) center;
+  background-repeat: no-repeat;
+  border: none;
+  align-self: center;
+  margin: 0;
+  margin-top: 3px;
+  /* margin-right: 30px; */
+  cursor: pointer;
+}
+.photo-grid__heart_active:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
