@@ -1,7 +1,7 @@
 export async function tokenCheck() {
   const token = localStorage.getItem("token");
   if (token) {
-    const response = await fetch("https://auth.nomoreparties.co/users/me", {
+    const response = await fetch("https://api.korzuk.students.nomoredomains.club/users/me", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export async function signIn(email, password) {
     }),
   };
   const response = await fetch(
-    "https://auth.nomoreparties.co/signin",
+    "https://api.korzuk.students.nomoredomains.club/signin",
     requestOptions
   );
   const data = await checkResponse(response);
@@ -51,7 +51,7 @@ export async function signUp(email, password) {
     }),
   };
   const response = await fetch(
-    "https://auth.nomoreparties.co/signup",
+    "https://api.korzuk.students.nomoredomains.club/signup",
     requestOptions
   );
   const data = await checkResponse(response);
