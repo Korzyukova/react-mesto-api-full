@@ -7,13 +7,15 @@ const routes = require('./routes');
 const { createUser, login } = require('./controllers/users');
 const { NotFoundError404 } = require('./middlewares/errorHandlers');
 
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+
 const errorMsg404 = 'Не найдено';
 
 const app = express();
 app.use(express.json());
 
 app.use(routes);
-
+app.use(requestLogger);
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     password: Joi.string().required(),
@@ -32,11 +34,11 @@ app.post('/signup', celebrate({
 app.all('*', () => {
   throw new NotFoundError404(errorMsg404);
 });
+app.use(errorLogger);
 app.use(errors());
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   const { statusCode = 500, message } = err;
-u
   res
     .status(statusCode)
     .send({
@@ -45,6 +47,7 @@ u
         : message,
     });
 });
+
 
 const { PORT = 3000 } = process.env;
 app.listen(PORT, () => {
