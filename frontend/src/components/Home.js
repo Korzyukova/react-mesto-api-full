@@ -27,6 +27,7 @@ class Home extends React.Component {
   componentDidMount() {
     Promise.all([api.getProfile(), api.getInitialCards()])
       .then(([userData, cards]) => {
+        console.log(cards)
         this.context.name = userData.name;
         this.context.about = userData.about;
         this.context.avatar = userData.avatar;
@@ -127,9 +128,7 @@ class Home extends React.Component {
     api
       .postInitialCards(data)
       .then((card) => {
-        console.log(card);
         const cards = this.state.cards;
-        // cards.splice(0, 0, card);
         this.setState({ cards: cards });
         this.closeAllPopups();
       })
