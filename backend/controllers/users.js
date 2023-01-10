@@ -115,7 +115,6 @@ module.exports.login = (req, res, next) => {
           const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
             expiresIn: '7d',
           });
-          console.log(token)
           res.send({ token });
         }
       }

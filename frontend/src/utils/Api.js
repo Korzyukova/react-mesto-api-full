@@ -85,7 +85,7 @@ export default class Api {
 export const api = new Api({
   baseUrl: "https://api.korzuk.students.nomoredomains.club",
   headers: {
-    authorization: "89e085ba-8b41-4418-bfe4-446f5ffbea9c",
+    authorization: localStorage.getItem("token"),
     "Content-Type": "application/json",
   },
 });
