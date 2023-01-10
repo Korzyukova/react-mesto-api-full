@@ -55,7 +55,6 @@ module.exports.createUser = async (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
-  let check409 = false;
 
   const usr = await User.findOne({
     email,
@@ -116,6 +115,7 @@ module.exports.login = (req, res, next) => {
           const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
             expiresIn: '7d',
           });
+          console.log(token)
           res.send({ token });
         }
       }
