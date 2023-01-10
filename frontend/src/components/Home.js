@@ -129,7 +129,7 @@ class Home extends React.Component {
       .then((card) => {
         console.log(card);
         const cards = this.state.cards;
-        cards.splice(0, 0, card);
+        // cards.splice(0, 0, card);
         this.setState({ cards: cards });
         this.closeAllPopups();
       })
