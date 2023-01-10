@@ -14,7 +14,22 @@ const errorMsg404 = 'Не найдено';
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+
+const allowedCors = [
+  'https://praktikum.tk',
+  'http://praktikum.tk',
+  'localhost:3000',
+];
+
+app.use((req, res, next) => {
+  const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
+  // проверяем, что источник запроса есть среди разрешённых
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', '*');
+  }
+
+  next();
+});
 
 app.use(routes);
 app.use(requestLogger);
