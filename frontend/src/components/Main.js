@@ -55,7 +55,7 @@ class Main extends React.Component {
         </section>
 
         <ul className="photo-grid">
-          {this.props.cards.map((card) => {
+          {this.props.cards && this.props.cards.map((card) => {
             return (
               <Card
                 card={card}
