@@ -55,15 +55,14 @@ module.exports.createUser = async (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
+  let check409 = false;
 
-  await User.findOne({
+  const usr = await User.findOne({
     email,
-  }).then((user) => {
-    if (user) {
-      throw new UserExistsError409(errorMsg409);
-    }
-  })
-    .catch(next);
+  });
+  if (usr) {
+    throw new UserExistsError409(errorMsg409);
+  }
 
   const hash = await bcrypt.hash(password, 10).catch(next);
   const user = await User.create({
