@@ -74,7 +74,7 @@ module.exports.createUser = async (req, res, next) => {
     password: hash,
   }).catch(next);
   const u = { ...user };
-  if (u._doc.password) delete u._doc.password;
+  if (u._doc) delete u._doc.password;
   res.send({ data: u._doc });
 };
 
