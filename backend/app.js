@@ -16,8 +16,8 @@ const app = express();
 app.use(express.json());
 
 const allowedCors = [
-  'https://praktikum.tk',
-  'http://praktikum.tk',
+  'https://korzuk.students.nomoredomains.club',
+  'http://korzuk.students.nomoredomains.club',
   'localhost:3000',
 ];
 
