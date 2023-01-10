@@ -1,7 +1,7 @@
 export async function tokenCheck() {
   const token = localStorage.getItem("token");
   if (token) {
-    const response = await fetch("https://korzuk.students.nomoredomains.club/api/users/me", {
+    const response = await fetch("https://api.korzuk.students.nomoredomains.club/users/me", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -29,9 +29,10 @@ export async function signIn(email, password) {
     }),
   };
   const response = await fetch(
-    "https://korzuk.students.nomoredomains.club/api/signin",
+    "https://api.korzuk.students.nomoredomains.club/signin",
     requestOptions
   );
+  console.log(response)
   const data = await checkResponse(response);
   if (data.token) {
     localStorage.setItem("token", data.token);
@@ -51,7 +52,7 @@ export async function signUp(email, password) {
     }),
   };
   const response = await fetch(
-    "https://korzuk.students.nomoredomains.club/api/signup",
+    "https://api.korzuk.students.nomoredomains.club/signup",
     requestOptions
   );
   const data = await checkResponse(response);
