@@ -58,7 +58,7 @@ class Home extends React.Component {
         .unlikeCard(card._id)
         .then((data) => {
           this.setState({
-            cards: this.state.cards.data.map((c) => (c._id === card._id ? data : c)),
+            cards: this.state.cards.map((c) => (c._id === card._id ? data : c)),
           });
         })
         .catch((data) => {
@@ -69,7 +69,7 @@ class Home extends React.Component {
         .likeCard(card._id)
         .then((data) => {
           this.setState({
-            cards: this.state.cards.data.map((c) => (c._id === card._id ? data : c)),
+            cards: this.state.cards.map((c) => (c._id === card._id ? data : c)),
           });
         })
         .catch((data) => {
@@ -83,7 +83,7 @@ class Home extends React.Component {
       .deleteCard(card._id)
       .then((data) => {
         this.setState({
-          cards: this.state.cards.data.filter((c) => c._id !== card._id),
+          cards: this.state.cards.filter((c) => c._id !== card._id),
         });
       })
       .catch((data) => {
