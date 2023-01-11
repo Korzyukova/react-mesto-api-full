@@ -5,8 +5,13 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 class Card extends React.Component {
   static contextType = CurrentUserContext;
 
+  // eslint-disable-next-line no-useless-constructor
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    const canDelete = (this.props.card && this.props.card.owner) ? this.props.card.owner._id === this.context.id : true;
+    const canDelete = (this.props.card && this.props.card.owner) ? this.props.card.owner._id === this.context.id : false;
     const cardDeleteButtonClassName = `trash ${canDelete ? "" : "hidden"}`;
 
     const isLiked = this.props.card.likes.some(
