@@ -31,7 +31,7 @@ class Home extends React.Component {
         this.context.about = userData.about;
         this.context.avatar = userData.avatar;
         this.context.id = userData._id;
-        this.setState({ cards: cards });
+        this.setState({ cards: cards.data });
       })
       .catch((err) => console.error(err));
   }

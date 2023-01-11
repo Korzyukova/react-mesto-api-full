@@ -11,7 +11,6 @@ export async function tokenCheck() {
         },
       }
     );
-    console.log(response);
     const data = await checkResponse(response);
     if (data) {
       return true;
