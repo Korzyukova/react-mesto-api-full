@@ -8,9 +8,7 @@ class Card extends React.Component {
   render() {
     const cardDeleteButtonClassName = `trash`;
 
-    const isLiked = (this.props.card && this.props.card.likes) && this.props.card.likes.some(
-      (i) => i._id === this.context.id
-    );
+    const isLiked = (this.props.card && this.props.card.likes) && this.props.card.likes.includes(this.context.id)
     const cardLikeButtonClassName = `${
       isLiked ? "photo-grid__heart_active" : "photo-grid__heart"
     }`;
