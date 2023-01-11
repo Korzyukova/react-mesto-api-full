@@ -14,7 +14,7 @@ class Card extends React.Component {
     const cardLikeButtonClassName = `${
       isLiked ? "photo-grid__heart_active" : "photo-grid__heart"
     }`;
-    const likedCount = this.props.card.likes.length;
+    const likedCount = (this.props.card && this.props.card.likes) && this.props.card.likes.length;
 
     return (
       <li className="photo-grid__rectangle">
