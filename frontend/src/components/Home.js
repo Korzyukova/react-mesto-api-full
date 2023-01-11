@@ -52,13 +52,13 @@ class Home extends React.Component {
 
   handleCardLike = (card) => {
     const isLiked = card.likes.some((i) => i._id === this.context.id);
-
+    console.log('isLiked', isLiked)
     if (isLiked) {
       api
         .unlikeCard(card._id)
         .then((data) => {
           this.setState({
-            cards: this.state.cards.map((c) => (c._id === card._id ? data : c)),
+            cards: this.state.cards.map((c) => (c._id === card._id) ? data : c),
           });
         })
         .catch((data) => {
@@ -69,7 +69,7 @@ class Home extends React.Component {
         .likeCard(card._id)
         .then((data) => {
           this.setState({
-            cards: this.state.cards.map((c) => (c._id === card._id ? data : c)),
+            cards: this.state.cards.map((c) => (c._id === card._id) ? data : c),
           });
         })
         .catch((data) => {
