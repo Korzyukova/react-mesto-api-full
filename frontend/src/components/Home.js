@@ -57,6 +57,7 @@ class Home extends React.Component {
       api
         .unlikeCard(card._id)
         .then((data) => {
+          console.log('unlikeCard', data)
           this.setState({
             cards: this.state.cards.map((c) => (c._id === card._id) ? data : c),
           });
@@ -68,6 +69,7 @@ class Home extends React.Component {
       api
         .likeCard(card._id)
         .then((data) => {
+          console.log('likeCard', data)
           this.setState({
             cards: this.state.cards.map((c) => (c._id === card._id) ? data : c),
           });
