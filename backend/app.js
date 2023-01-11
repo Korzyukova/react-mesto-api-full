@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const express = require('express');
-const cors = require('cors');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
 
@@ -18,9 +17,10 @@ app.use(express.json());
 const allowedCors = [
   'https://korzuk.students.nomoredomains.club',
   'http://korzuk.students.nomoredomains.club',
-  'localhost:3000',
+  'http://localhost:3001',
 ];
 
+// eslint-disable-next-line consistent-return
 app.use((req, res, next) => {
   const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
   // проверяем, что источник запроса есть среди разрешённых

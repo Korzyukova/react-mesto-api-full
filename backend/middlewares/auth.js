@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
 
   const token = authorization.replace('Bearer ', '');
   let payload;
-
+  console.log(token)
   try {
     payload = jwt.verify(token, 'some-secret-key');
   } catch (err) {

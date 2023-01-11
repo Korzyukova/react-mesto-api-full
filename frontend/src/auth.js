@@ -1,13 +1,17 @@
 export async function tokenCheck() {
   const token = localStorage.getItem("token");
   if (token) {
-    const response = await fetch("https://api.korzuk.students.nomoredomains.club/users/me", {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    const response = await fetch(
+      "https://api.korzuk.students.nomoredomains.club//users/me",
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(response);
     const data = await checkResponse(response);
     if (data) {
       return true;
@@ -28,11 +32,8 @@ export async function signIn(email, password) {
       password,
     }),
   };
-  const response = await fetch(
-    "https://api.korzuk.students.nomoredomains.club/signin",
-    requestOptions
-  );
-  console.log(response)
+  const response = await fetch("https://api.korzuk.students.nomoredomains.club/signin", requestOptions);
+
   const data = await checkResponse(response);
   if (data.token) {
     localStorage.setItem("token", data.token);
@@ -52,11 +53,11 @@ export async function signUp(email, password) {
     }),
   };
   const response = await fetch(
-    "https://api.korzuk.students.nomoredomains.club/signup",
+    "https://api.korzuk.students.nomoredomains.club//signup",
     requestOptions
   );
   const data = await checkResponse(response);
-  console.log(data)
+
   if (data.token) {
     localStorage.setItem("token", data.token);
     window.location.assign("/");
@@ -66,8 +67,8 @@ export async function signUp(email, password) {
   }
 }
 
-export async function checkResponse(res){
-  if(res.ok) {
+export async function checkResponse(res) {
+  if (res.ok) {
     return await res.json();
   } else {
     throw new Error(400);

@@ -83,7 +83,7 @@ export default class Api {
 }
 
 export const api = new Api({
-  baseUrl: "https://api.korzuk.students.nomoredomains.club",
+  baseUrl: "https://api.korzuk.students.nomoredomains.club/",
   headers: {
     authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",

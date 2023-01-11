@@ -11,6 +11,7 @@ import {
   Route,
   Redirect,
   withRouter,
+  Navigate
 } from "react-router-dom";
 import { tokenCheck, signIn, signUp } from "../auth.js";
 
@@ -49,6 +50,7 @@ class App extends React.Component {
     const success = await signIn(email, password).catch((err) => {
       err && console.error(err);
     });
+    console.log(success)
     success
       ? this.setState(() => {
           return {
@@ -58,7 +60,7 @@ class App extends React.Component {
             email,
           };
         })
-      : this.setState({loggedIn: true, email });
+      : this.setState({loggedIn: false, email, showPopUp: true });
   }
 
   handleLogout() {
@@ -121,14 +123,14 @@ class App extends React.Component {
             </Route>
             <Route exact path="/sign-up">
               {this.state.loggedIn ? (
-                <Home email={this.state.email} />
+                <Redirect to="/" />
               ) : (
                 <Register handleRegister={this.handleRegister} />
               )}
             </Route>
             <Route exact path="/sign-in">
               {this.state.loggedIn ? (
-                <Home email={this.state.email} />
+                <Redirect to="/" />
               ) : (
                 <Login handleLogin={this.handleLogin} />
               )}
