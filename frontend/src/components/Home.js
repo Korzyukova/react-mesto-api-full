@@ -51,7 +51,7 @@ class Home extends React.Component {
   };
 
   handleCardLike = (card) => {
-    const isLiked = card.likes.some((i) => i._id === this.context.id);
+    const isLiked = card.likes.includes(this.context.id);
     console.log('isLiked', isLiked)
     if (isLiked) {
       api
