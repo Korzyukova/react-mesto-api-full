@@ -11,7 +11,7 @@ import {
   Route,
   Redirect,
   withRouter,
-  Navigate
+  Navigate,
 } from "react-router-dom";
 import { tokenCheck, signIn, signUp } from "../auth.js";
 
@@ -50,17 +50,15 @@ class App extends React.Component {
     const success = await signIn(email, password).catch((err) => {
       err && console.error(err);
     });
-    console.log(success)
+    console.log(success);
     success
-      ? this.setState(() => {
-          return {
-            // showPopUp: true,
-            isSuccessful: true,
-            loggedIn: true,
-            email,
-          };
+      ? this.setState({
+          showPopUp: true,
+          isSuccessful: true,
+          loggedIn: true,
+          email,
         })
-      : this.setState({loggedIn: false, email, showPopUp: true });
+      : this.setState({ loggedIn: false, email, showPopUp: true });
   }
 
   handleLogout() {
@@ -83,20 +81,20 @@ class App extends React.Component {
 
   async handleRegister(email, password) {
     signUp(email, password)
-    .then(() => {
-      this.setState(() => {
-        return {
-          showPopUp: true,
-          isSuccessful: true,
-          loggedIn: true,
-          email,
-        };
+      .then(() => {
+        this.setState(() => {
+          return {
+            showPopUp: true,
+            isSuccessful: true,
+            loggedIn: true,
+            email,
+          };
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        err && this.setState({ showPopUp: true });
       });
-    })
-    .catch((err) => {
-      console.log(err);
-      err && this.setState({ showPopUp: true });
-    });
   }
 
   closePopUp = () => {
