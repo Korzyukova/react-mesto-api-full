@@ -2,7 +2,7 @@ export async function tokenCheck() {
   const token = localStorage.getItem("token");
   if (token) {
     const response = await fetch(
-      "https://api.korzuk.students.nomoredomains.club//users/me",
+      "https://api.korzuk.students.nomoredomains.club/users/me",
       {
         headers: {
           Accept: "application/json",
@@ -53,7 +53,7 @@ export async function signUp(email, password) {
     }),
   };
   const response = await fetch(
-    "https://api.korzuk.students.nomoredomains.club//signup",
+    "https://api.korzuk.students.nomoredomains.club/signup",
     requestOptions
   );
   const data = await checkResponse(response);
