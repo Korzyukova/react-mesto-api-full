@@ -71,9 +71,11 @@ module.exports.createUser = async (req, res, next) => {
     avatar,
     password: hash,
   }).catch(next);
-  const u = { ...user };
-  if (u._doc) delete u._doc.password;
-  res.send({ data: u._doc });
+
+  const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
+    expiresIn: '7d',
+  });
+  res.send({ token });
 };
 
 module.exports.updateUser = (req, res, next) => {
