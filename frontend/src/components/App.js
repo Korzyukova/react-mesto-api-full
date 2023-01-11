@@ -82,13 +82,11 @@ class App extends React.Component {
   async handleRegister(email, password) {
     signUp(email, password)
       .then(() => {
-        this.setState(() => {
-          return {
-            showPopUp: true,
-            isSuccessful: true,
-            loggedIn: true,
-            email,
-          };
+        this.setState({
+          showPopUp: true,
+          isSuccessful: true,
+          loggedIn: true,
+          email,
         });
       })
       .catch((err) => {
