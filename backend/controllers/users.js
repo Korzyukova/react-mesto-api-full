@@ -72,7 +72,7 @@ module.exports.createUser = async (req, res, next) => {
     password: hash,
   }).catch(next);
 
-  const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
     expiresIn: '7d',
   });
   res.send({ token });
@@ -114,7 +114,7 @@ module.exports.login = (req, res, next) => {
         if (!matched) {
           throw new AuthorizationError401(errorMsg401);
         } else {
-          const token = jwt.sign({ _id: user._id }, 'some-secret-key', {
+          const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
             expiresIn: '7d',
           });
           res.send({ token });
