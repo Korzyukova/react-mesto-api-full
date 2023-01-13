@@ -6,7 +6,8 @@ class Card extends React.Component {
   static contextType = CurrentUserContext;
 
   render() {
-    const cardDeleteButtonClassName = `trash`;
+    const canDelete = this.props.card ? this.props.card.owner._id === this.context.id : false;
+    const cardDeleteButtonClassName = `trash ${canDelete ? "" : "hidden"}`;
 
     const isLiked = (this.props.card && this.props.card.likes) && this.props.card.likes.includes(this.context.id)
     const cardLikeButtonClassName = `${
