@@ -1,7 +1,7 @@
 const Card = require('../models/card');
 
 const {
-  WrongDataError400
+  WrongDataError400,
   NotFoundError404,
   RemoveCardError403,
 } = require('../middlewares/errorHandlers');
