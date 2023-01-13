@@ -1,6 +1,7 @@
 const Card = require('../models/card');
 
 const {
+  WrongDataError400
   NotFoundError404,
   RemoveCardError403,
 } = require('../middlewares/errorHandlers');
@@ -44,7 +45,13 @@ module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
     .then((data) => res.send({ data }))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new WrongDataError400('Некорректные данные при создании карточки'));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.likeCard = (req, res, next) => {
