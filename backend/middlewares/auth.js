@@ -13,7 +13,6 @@ module.exports = (req, res, next) => {
 
   const token = authorization.replace('Bearer ', '');
   let payload;
-  console.log(token)
   try {
     payload = jwt.verify(token, process.env.JWT_SECRET);
   } catch (err) {

@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { celebrate, Joi, errors } = require('celebrate');
-require('dotenv').config()
+require('dotenv').config();
 
 const routes = require('./routes');
 const { createUser, login } = require('./controllers/users');
@@ -10,7 +10,7 @@ const { NotFoundError404 } = require('./middlewares/errorHandlers');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { reEmail, reAvatar} = require('./regex');
+const { reEmail, reAvatar } = require('./regex');
 
 const errorMsg404 = 'Не найдено';
 

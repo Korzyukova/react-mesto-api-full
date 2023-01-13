@@ -11,7 +11,6 @@ import {
   Route,
   Redirect,
   withRouter,
-  Navigate,
 } from "react-router-dom";
 import { tokenCheck, signIn, signUp } from "../auth.js";
 

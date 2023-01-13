@@ -6,12 +6,10 @@ const User = require('../models/user');
 const {
   AuthorizationError401,
   NotFoundError404,
-  UserExistsError409,
 } = require('../middlewares/errorHandlers');
 
 const errorMsg404 = 'Пользователь с указанным _id не найден';
 const errorMsg401 = 'Ошибка авторизации';
-const errorMsg409 = 'Такой пользователь уже существует';
 
 module.exports.getUsers = (req, res, next) => {
   User.find()
