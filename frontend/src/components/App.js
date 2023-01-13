@@ -50,7 +50,7 @@ class App extends React.Component {
     const success = await signIn(email, password).catch((err) => {
       err && console.error(err);
     });
-    console.log(success);
+    console.log('success', success);
     success
       ? this.setState({
           showPopUp: true,

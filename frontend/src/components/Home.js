@@ -27,6 +27,7 @@ class Home extends React.Component {
   componentDidMount() {
     Promise.all([api.getProfile(), api.getInitialCards()])
       .then(([userData, cards]) => {
+        console.log('userData', userData)
         this.context.name = userData.name;
         this.context.about = userData.about;
         this.context.avatar = userData.avatar;
