@@ -76,11 +76,12 @@ module.exports.createUser = async (req, res, next) => {
       next(err);
     }
   });
-
-  const token = jwt.sign({ _id: user._id }, secret, {
-    expiresIn: '7d',
-  });
-  res.send({ token });
+  if (user) {
+    const token = jwt.sign({ _id: user._id }, secret, {
+      expiresIn: '7d',
+    });
+    res.send({ token });
+  }
 };
 
 module.exports.updateUser = (req, res, next) => {
