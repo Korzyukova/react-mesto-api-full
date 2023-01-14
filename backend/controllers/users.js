@@ -4,12 +4,18 @@ const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 const {
+  ConflictError11000,
   AuthorizationError401,
   NotFoundError404,
+  WrongDataError400,
 } = require('../middlewares/errorHandlers');
 
 const errorMsg404 = 'Пользователь с указанным _id не найден';
 const errorMsg401 = 'Ошибка авторизации';
+const errorMsg11000 = 'Пользователь с данным email уже существует';
+const errorMsg400 = 'Некорректные данные при создании карточки';
+
+const secret = process.env.JWT_SECRET || 'secret-key';
 
 module.exports.getUsers = (req, res, next) => {
   User.find()
@@ -61,9 +67,17 @@ module.exports.createUser = async (req, res, next) => {
     about,
     avatar,
     password: hash,
-  }).catch(next);
+  }).catch((err) => {
+    if (err.code === 11000) {
+      next(new ConflictError11000(errorMsg11000));
+    } else if (err.name === 'ValidationError') {
+      next(new WrongDataError400(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
+    } else {
+      next(err);
+    }
+  });
 
-  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+  const token = jwt.sign({ _id: user._id }, secret, {
     expiresIn: '7d',
   });
   res.send({ token });
@@ -77,7 +91,13 @@ module.exports.updateUser = (req, res, next) => {
     new: true,
   })
     .then(() => res.send(update))
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new WrongDataError400(errorMsg400));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.updateUserAvatar = (req, res, next) => {
@@ -89,7 +109,13 @@ module.exports.updateUserAvatar = (req, res, next) => {
     .then((data) => {
       res.send(data);
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError') {
+        next(new WrongDataError400(errorMsg400));
+      } else {
+        next(err);
+      }
+    });
 };
 
 module.exports.login = (req, res, next) => {
@@ -105,7 +131,7 @@ module.exports.login = (req, res, next) => {
         if (!matched) {
           throw new AuthorizationError401(errorMsg401);
         } else {
-          const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+          const token = jwt.sign({ _id: user._id }, secret, {
             expiresIn: '7d',
           });
           res.send({ token });

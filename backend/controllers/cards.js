@@ -8,6 +8,7 @@ const {
 
 const errorMsg404 = 'Карточка с указанным _id не найден';
 const errorMsg403 = 'Удаление карточки другого пользователя';
+const errorMsg400 = 'Некорректные данные при создании карточки';
 
 module.exports.getCards = (req, res, next) => {
   Card.find()
@@ -47,7 +48,7 @@ module.exports.createCard = (req, res, next) => {
     .then((data) => res.send({ data }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new WrongDataError400('Некорректные данные при создании карточки'));
+        next(new WrongDataError400(errorMsg400));
       } else {
         next(err);
       }

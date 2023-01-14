@@ -13,8 +13,9 @@ module.exports = (req, res, next) => {
 
   const token = authorization.replace('Bearer ', '');
   let payload;
+  const secret = process.env.JWT_SECRET || 'secret-key';
   try {
-    payload = jwt.verify(token, process.env.JWT_SECRET);
+    payload = jwt.verify(token, secret);
   } catch (err) {
     throw new AuthorizationError401(errorMsg401);
   }

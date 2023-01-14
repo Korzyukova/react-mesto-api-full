@@ -4,6 +4,7 @@ const AuthorizationError401 = require('./authorizationError401');
 const WrongDataError400 = require('./wrongDataError400');
 const NotFoundError404 = require('./notFoundError404');
 const UserExistsError409 = require('./userExistsError409');
+const ConflictError11000 = require('./conflictError11000');
 
 module.exports = {
   DefaultError500,
@@ -12,4 +13,5 @@ module.exports = {
   WrongDataError400,
   NotFoundError404,
   UserExistsError409,
+  ConflictError11000,
 };
